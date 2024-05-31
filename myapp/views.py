@@ -6,11 +6,15 @@ from .models import Choice, Question
 from django.template import loader
 from django.db.models import F
 from django.views import generic
+from django.contrib.auth.decorators import login_required
+
 
 class IndexView (generic.ListView):
     template_name = "myapp/index.html"
     context_object_name = "latest_question_list"
     def get_queryset(self):
+        user = self.request.user
+        print(user.id)
         return Question.objects.order_by("-pub_date")[:5]
     
 class DetailView(generic.DetailView):
