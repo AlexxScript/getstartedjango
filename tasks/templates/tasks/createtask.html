@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Crear Nueva Tarea</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <p>
+            {{ form.title_task.label_tag }}
+            {{ form.title_task }}
+        </p>
+        <p>
+            {{ form.description_task.label_tag }}
+            {{ form.description_task }}
+        </p>
+        <button type="submit">Crear Tarea</button>
+    </form>
+</body>
+
+</html>
