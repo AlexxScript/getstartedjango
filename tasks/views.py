@@ -1,6 +1,6 @@
 from typing import Any
 from django.shortcuts import render
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, DeleteView
 from .models import Tasks
 from .forms import CreateTaskForm
 
@@ -19,8 +19,13 @@ class CreateTask(CreateView):
     form_class = CreateTaskForm 
     template_name = 'tasks/createtask.html'
     success_url = "/"
-    print(form_class)
 
     def form_valid(self,form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+    
+class DeleteTask(DeleteView):
+    model = Tasks
+    success_url = "/tasks/listtask/"
+    template_name = "tasks/deletetask.html"
+    context_object_name = "tasks"
