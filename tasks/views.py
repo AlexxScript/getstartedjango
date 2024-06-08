@@ -1,6 +1,6 @@
 from typing import Any
 from django.shortcuts import render
-from django.views.generic import CreateView, ListView, DeleteView
+from django.views.generic import CreateView, ListView, DeleteView, UpdateView
 from .models import Tasks
 from .forms import CreateTaskForm
 
@@ -29,3 +29,9 @@ class DeleteTask(DeleteView):
     success_url = "/tasks/listtask/"
     template_name = "tasks/deletetask.html"
     context_object_name = "tasks"
+
+class UpdateTask(UpdateView):
+    model = Tasks
+    success_url = "/tasks/listtask/"
+    template_name = "tasks/updatetask.html"
+    fields = ['title_task','description_task']
